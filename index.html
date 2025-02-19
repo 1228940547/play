@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>可以成为我的恋人吗?</title>
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				background-color: #fde6d7;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				text-align: center;
+				font-family: Arial, sans-serif;
+			}
+
+			.content {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				max-width: 90%;
+				height: 100vh;
+				text-align: center;
+			}
+
+			.yesContent {
+				display: none;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				max-width: 90%;
+				text-align: center;
+			}
+
+			.image {
+				width: 150px;
+				height: 150px;
+				background: url('./image/heart.png') center/contain no-repeat;
+				margin-bottom: 10px;
+				transition: transform 0.5s;
+			}
+
+			.yesImage {
+				width: 150px;
+				height: 150px;
+				background: url('./image/hug.png') center/contain no-repeat;
+				margin-bottom: 10px;
+				transition: transform 0.5s;
+			}
+
+			p {
+				font-size: 18px;
+				color: white;
+				margin-bottom: 20px;
+				transition: font-size 0.3s ease;
+			}
+
+			button {
+				font-size: 16px;
+				padding: 12px 25px;
+				margin: 10px;
+				background-color: #ff6699;
+				color: white;
+				border: none;
+				cursor: pointer;
+				border-radius: 5px;
+				transition: transform 0.3s ease, background-color 0.3s ease;
+			}
+
+			button:hover {
+				background-color: #ff3366;
+			}
+
+			@media (max-width: 600px) {
+				.image {
+					width: 120px;
+					height: 120px;
+				}
+
+				p {
+					font-size: 16px;
+				}
+
+				button {
+					font-size: 14px;
+					padding: 10px 20px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content" id="content">
+			<div class="image" id="image"></div>
+			<p id="question" style="color: #a37681; font-size: 25px; font-weight: 800;">可以成为我的恋人吗？</p>
+			<button id="yes" style="background-color: #dc7a88; font-weight: 600;"
+				onclick="handleClick(true)">可以</button>
+			<button id="no" style="background-color: #6d98c3; font-weight: 600;"
+				onclick="handleClick(false)">不要</button>
+		</div>
+
+		<div class="yesContent" id="yesContent">
+			<p style="color: #a37681; font-size: 25px; font-weight: 800;">!!!喜欢你!!(>ω<)♡</p>
+					<div class="yesImage"></div>
+		</div>
+
+		<script>
+			let clickCount = 0;
+
+			let images = [];
+
+			function handleClick(isYes) {
+				const content = document.getElementById('content');
+				const yesContent = document.getElementById('yesContent');
+				const yesButton = document.getElementById('yes');
+				const noButton = document.getElementById('no');
+				const image = document.getElementById('image');
+				const question = document.getElementById('question');
+
+				if (!isYes) {
+					clickCount++;
+					// Make only the "可以" button grow
+					yesButton.style.transform = `scale(${1 + clickCount * 0.1})`;
+
+					const yesMarginTop = window.getComputedStyle(yesButton).marginTop;
+					const yesMarginTopValue = parseFloat(yesMarginTop);
+
+					const noMarginTop = window.getComputedStyle(noButton).marginTop;
+					const noMarginTopValue = parseFloat(noMarginTop);
+
+					// yesButton.style.marginTop = `${yesMarginTopValue + 2}px`;
+					noButton.style.marginTop = `${noMarginTopValue + 2}px`;
+					// Optionally change the image and text after multiple clicks
+					if (clickCount == 1) {
+						noButton.innerText = `? 你认真的吗...`;
+					} else if (clickCount == 2) {
+						image.style.backgroundImage = "url('./image/shocked.png')";
+						noButton.innerText = `? 要不再想想?`;
+					} else if (clickCount == 3) {
+						image.style.backgroundImage = "url('./image/think.png')";
+						noButton.innerText = `不许选这个!`;
+					} else if (clickCount == 4) {
+						image.style.backgroundImage = "url('./image/crying.png')";
+						noButton.innerText = `我会很伤心...`;
+					} else {
+						image.style.backgroundImage = "url('./image/angry.png')";
+						noButton.innerText = `不行:(`;
+					}
+				} else {
+					content.style.display = "none";
+					content.remove();
+					yesContent.style.display = "flex";
+				}
+			}
+		</script>
+	</body>
+</html>
