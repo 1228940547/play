@@ -39,7 +39,7 @@
 			.image {
 				width: 150px;
 				height: 150px;
-				background: url('./image/heart.png') center/contain no-repeat;
+				background: url('./heart.png') center/contain no-repeat;
 				margin-bottom: 10px;
 				transition: transform 0.5s;
 			}
@@ -47,7 +47,7 @@
 			.yesImage {
 				width: 150px;
 				height: 150px;
-				background: url('./image/hug.png') center/contain no-repeat;
+				background: url('./hug.png') center/contain no-repeat;
 				margin-bottom: 10px;
 				transition: transform 0.5s;
 			}
@@ -137,16 +137,16 @@
 					if (clickCount == 1) {
 						noButton.innerText = `? 你认真的吗...`;
 					} else if (clickCount == 2) {
-						image.style.backgroundImage = "url('./image/shocked.png')";
+						image.style.backgroundImage = "url('./shocked.png')";
 						noButton.innerText = `? 要不再想想?`;
 					} else if (clickCount == 3) {
-						image.style.backgroundImage = "url('./image/think.png')";
+						image.style.backgroundImage = "url('./think.png')";
 						noButton.innerText = `不许选这个!`;
 					} else if (clickCount == 4) {
-						image.style.backgroundImage = "url('./image/crying.png')";
+						image.style.backgroundImage = "url('./crying.png')";
 						noButton.innerText = `我会很伤心...`;
 					} else {
-						image.style.backgroundImage = "url('./image/angry.png')";
+						image.style.backgroundImage = "url('./angry.png')";
 						noButton.innerText = `不行:(`;
 					}
 				} else {
